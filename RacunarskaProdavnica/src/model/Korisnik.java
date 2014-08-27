@@ -1,7 +1,13 @@
 package model;
 
-public class Korisnik {
+import java.io.Serializable;
 
+public class Korisnik implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4571014452196647321L;
 	protected String userName;
 	protected String password;
 	protected String name;

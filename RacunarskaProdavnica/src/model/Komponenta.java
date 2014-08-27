@@ -1,16 +1,21 @@
 package model;
 
 import java.awt.Image;
+import java.io.Serializable;
 
-public class Komponenta {
+public class Komponenta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 164605316319946827L;
 	protected String naziv;
-	protected String kategorija;
+	protected Kategorija kategorija;
 	protected int raspoloziva_kolicina;
 	protected double cena;
 	protected String opis;
 	protected String link;
 	protected Image Slika;
-	public Komponenta(String naziv, String kategorija,
+	public Komponenta(String naziv, Kategorija kategorija,
 			int raspoloziva_kolicina, double cena, String opis, String link,
 			Image slika) {
 		super();
@@ -22,16 +27,17 @@ public class Komponenta {
 		this.link = link;
 		Slika = slika;
 	}
+	public Komponenta(){}
 	public String getNaziv() {
 		return naziv;
 	}
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
-	public String getKategorija() {
+	public Kategorija getKategorija() {
 		return kategorija;
 	}
-	public void setKategorija(String kategorija) {
+	public void setKategorija(Kategorija kategorija) {
 		this.kategorija = kategorija;
 	}
 	public int getRaspoloziva_kolicina() {

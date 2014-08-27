@@ -1,6 +1,12 @@
 package model;
 
-public class Kategorija {
+import java.io.Serializable;
+
+public class Kategorija implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4217463714799639922L;
 	protected String naziv;
 	protected String opis;
 	protected String pod_kategorija_naziv;
@@ -15,6 +21,7 @@ public class Kategorija {
 		setOpis(aOpis);
 		setPod_kategorija_naziv(aPod_kategorija_naziv);
 	}
+	
 	public String getNaziv() {
 		return naziv;
 	}

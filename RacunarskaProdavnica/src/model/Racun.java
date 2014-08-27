@@ -1,10 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Racun {
+public class Racun implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7961646647689075135L;
 	protected HashMap<Komponenta,Integer> komponente;
 	protected HashMap<Uredjaj,Integer>uredjaji;
 	protected double porez;

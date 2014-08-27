@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Uredjaj {
+public class Uredjaj implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7514889867512262708L;
 	protected String naziv;
 	protected ArrayList<Komponenta> komponente;
 	protected String opis;
@@ -12,6 +17,7 @@ public class Uredjaj {
 		this.komponente = komponente;
 		this.opis = opis;
 	}
+	public Uredjaj(){}
 	public String getNaziv() {
 		return naziv;
 	}
