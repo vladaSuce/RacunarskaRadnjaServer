@@ -11,7 +11,17 @@ import java.util.StringTokenizer;
 
 
 
+
+
+
+
+
+import model.Kategorija;
+import model.Komponenta;
+import model.Korisnik;
 import model.Poruka;
+import model.Racun;
+import model.Uredjaj;
 import repository.IKomand;
 import repository.ProdavnicaRacunara;
 
@@ -110,9 +120,45 @@ private Object clientResponse(Poruka request) {
 	return null;
 }
 
-private Object addAutor(Object autor) {
+private Object addKategorija(Object kategorija) {
 	try {
-		galerija.dodajAutora((Autor) autor);
+		prodavnica.addKategorija((Kategorija) kategorija);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
+private Object addKomponenta(Object komponenta) {
+	try {
+		prodavnica.addKomponenta((Komponenta) komponenta);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
+private Object addKorisnik(Object korisnik) {
+	try {
+		prodavnica.addKorisnik((Korisnik) korisnik);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
+private Object addRacun(Object racun) {
+	try {
+		prodavnica.addRacun((Racun) racun);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
+private Object addUredjaj(Object uredjaj) {
+	try {
+		prodavnica.addUredjaj((Uredjaj) uredjaj);
 	} catch (Exception e) {
 		e.printStackTrace();
 		return false;
@@ -120,13 +166,40 @@ private Object addAutor(Object autor) {
 	return true;
 }
 
-private Object editAutor(Object autor) {
+private Object editKategorija(Object kategorija) {
 	try {
-		Autor aut = (Autor) autor;
-		galerija.izmeniAutora(aut.getIme(), aut.getPrezime(),
-				aut.getDatumRodjenja(), aut.getDatumSmrti(),
-				aut.getMestoRodjenja(), aut.getMestoSmrti(),
-				aut.getBiografija(), aut.isZiv(), aut.getId());
+		Kategorija kat = (Kategorija) kategorija;
+		prodavnica.editKategorija(kat);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+
+}
+private Object editKomponenta(Object komponenta) {
+	try {
+		Komponenta komp = (Komponenta) komponenta;
+		prodavnica.editKomponente(komp);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+
+}
+private Object editKorisnik(Object korisnik) {
+	try {
+		Korisnik kor = (Korisnik) korisnik;
+		prodavnica.editKorisnik(kor);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+
+}
+private Object editUredjaj(Object uredjaj) {
+	try {
+		Uredjaj ure = (Uredjaj) uredjaj;
+		prodavnica.editUredjaj(ure);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -134,72 +207,93 @@ private Object editAutor(Object autor) {
 
 }
 
-private Object removeAutor(Object id) {
+private Object removeKategorija(Object nazivK) {
 	try {
-		galerija.obrisiAutora((Integer) id);
+		prodavnica.removeKategorija((String)nazivK);
 		return null;
 	} catch (Exception e) {
 
 	}
-	return "Autor je već vezan za delo";
+	return "Kategorija vezana za komponentu";
+}
+private Object removeKomponenta(Object nazivK) {
+	try {
+		prodavnica.removeKomponenta((String)nazivK);
+		return null;
+	} catch (Exception e) {
+
+	}
+	return "Komponenta vezana za uredjaj";
+}
+private Object removeUredjaj(Object nazivK) {
+	try {
+		prodavnica.removeUredjaj((String)nazivK);
+		return null;
+	} catch (Exception e) {
+
+	}
+	return "Uredjaj nije dostupan";
+}
+private Object removeKorisnik(Object nazivK) {
+	try {
+		prodavnica.removeKorisnik((String)nazivK);
+		return null;
+	} catch (Exception e) {
+
+	}
+	return "Korisnik nije dostupan";
 }
 
-private Object getAutor(Object id) {
+
+private Object listKomponente() {
+	return prodavnica.getKomponente();
+}
+private Object listKategorije() {
+	return prodavnica.getKategorije();
+}
+private Object listKorisnici() {
+	return prodavnica.getKorisnici();
+}
+private Object listUredjaji() {
+	return prodavnica.getUredjaji();
+}
+private Object listRacuni() {
+	return prodavnica.getUredjaji();
+}
+
+private Object getKomponenta(Object komponentaNaziv) {
 	try {
-		return galerija.pronadjiAutora((Integer)id);
+		return prodavnica.findKomponenta((String) komponentaNaziv);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return null;
 }
-
-private Object listAutor() {
-	return galerija.getAutori();
-}
-
-private Object addDelo(Object delo) {
+private Object getKategorija(Object kategorijaNaziv) {
 	try {
-		galerija.dodajUmetnickoDelo((UmetnickoDelo) delo);
-
-	} catch (Exception e) {
-		e.printStackTrace();
-		return false;
-	}
-	return true;
-}
-
-private Object editDelo(Object delo) {
-	try {
-		galerija.izmeniUmetnickoDelo((UmetnickoDelo) delo);
-
+		return prodavnica.findKategorija((String) kategorijaNaziv);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return null;
 }
-
-private Object removeDelo(Object delo) {
+private Object getKorisnik(Object korisnikNaziv) {
 	try {
-		galerija.obrisiUmetnickoDelo((Integer) delo);
+		return prodavnica.findKorisnik((String) korisnikNaziv);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return null;
 }
-
-private Object getDelo(Object delo) {
+private Object getUredjaj(Object uredjajNaziv) {
 	try {
-		return galerija.pronadjiUmetnickoDelo((Integer) delo);
+		return prodavnica.findUredjaj((String) uredjajNaziv);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return null;
 }
-
-private Object listDelo() {
-	return galerija.getDela();
-}
-
+/*
 private Object login(Object data) {
 	try {
 		String dat = (String) data;
@@ -215,159 +309,101 @@ private Object login(Object data) {
 		return null;
 	}
 }
-
+*/
 private Object getInfo() {
-	return galerija.toString();
+	return prodavnica.toString();
 }
-
-private Object getStilovi() {
-	return galerija.getStilovi();
-}
-
-private Object getTehnike() {
-	return galerija.getTehnike();
-}
-
-private Object listStiloviDela(Object data) {
-	try {
-		String dat = (String) data;
-		Collection<UmetnickoDelo> dela = new ArrayList<UmetnickoDelo>();
-		for (UmetnickoDelo ud : galerija.getDela()) {
-			if (ud.getStil().equals(dat))
-				dela.add(ud);
-		}
-		return dela;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
+private Object findKomponentaByNziv(Object naziv){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Komponenta> tempList = prodavnica.getKomponente();
+	for(Komponenta k : tempList){
+		if (k.getNaziv().toLowerCase().contains(((String)naziv).toLowerCase()))
+			retList.add(k);
 	}
+	return retList;
 }
-
-private Object listAutorDela(Object data) {
-	try {
-		int dat = (Integer)data;
-		Collection<UmetnickoDelo> dela = new ArrayList<UmetnickoDelo>();
-		for (UmetnickoDelo ud : galerija.getDela()) {
-			if (dat == ud.getIdAutora())
-				dela.add(ud);
-		}
-		return dela;
-
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
+private Object findKomponentaByOpsegCene(Object cenaOd,Object cenaDo){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Komponenta> tempList = prodavnica.getKomponente();
+	for(Komponenta k : tempList){
+		if(k.getCena()>= (double)cenaOd && k.getCena() <= (double)cenaDo)
+			retList.add(k);
 	}
+	return retList;
 }
-
-private Object listTehnikeDela(Object data) {
-	try {
-		String dat = (String) data;
-		Collection<UmetnickoDelo> dela = new ArrayList<UmetnickoDelo>();
-		for (UmetnickoDelo ud : galerija.getDela()) {
-			if (ud.getTehnika().equals(dat))
-				dela.add(ud);
-		}
-		return dela;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
+private Object findKomponentaByRaspolozivaKolicina(Object kolicina){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Komponenta> tempList = prodavnica.getKomponente();
+	for(Komponenta k : tempList){
+		if(k.getRaspoloziva_kolicina()>= (Integer)kolicina)
+			retList.add(k);
 	}
+	return retList;
+}
+private Object findKomponentaByOpis(Object opis){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Komponenta> tempList = prodavnica.getKomponente();
+	for(Komponenta k : tempList){
+		if(k.getOpis().toLowerCase().contains(((String)opis).toLowerCase()))
+			retList.add(k);
+	}
+	return retList;
 }
 
-@SuppressWarnings("unchecked")
-private Object listStiloviAutori(Object data) {
-	try {
-		String dat = (String) data;
-		Collection<Autor> autori = new ArrayList<Autor>();
-		Collection<UmetnickoDelo> dela = (Collection<UmetnickoDelo>) listStiloviDela(dat);
-		for (Autor aut : galerija.getAutori()) {
-			for (UmetnickoDelo ud : dela) {
-				if (aut.getId() == ud.getIdAutora()) {
-					autori.add(aut);
-					break;
+private Object findKomponentaByKategorija(Object nazivKategorije){
+	ArrayList retList = new ArrayList<>();
+	Kategorija kat = prodavnica.findKategorija((String)nazivKategorije);
+	ArrayList<Komponenta> tempList = prodavnica.getKomponente();
+	for(Komponenta k : tempList){
+		if(k.getKategorija().equals(kat))
+			retList.add(k);
+	}
+	return retList;
+}
+private Object findUredjajByNaziv(Object naziv){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Uredjaj> tempList = prodavnica.getUredjaji();
+	for(Uredjaj u : tempList){
+		if (u.getNaziv().toLowerCase().contains(((String)naziv).toLowerCase()))
+			retList.add(u);
+	}
+	return retList;
+}
+private Object findUredjajByOpis(Object opis){
+	ArrayList retList = new ArrayList<>();
+	ArrayList<Uredjaj> tempList = prodavnica.getUredjaji();
+	for(Uredjaj u : tempList){
+		if(u.getOpis().toLowerCase().contains(((String)opis).toLowerCase()))
+			retList.add(u);
+	}
+	return retList;
+}
+private Object findUredjajByKomponente(Object listaKomponenti){
+	ArrayList<Object> tempList = (ArrayList<Object>)listaKomponenti;
+	ArrayList<Komponenta>tempKompList = new ArrayList<Komponenta>();
+	ArrayList retVal = new ArrayList<>();
+	for (Object o : tempList){
+		Komponenta k = (Komponenta)o;
+		tempKompList.add(k);
+		}
+	if(tempKompList.size()> 0 && tempKompList != null){
+		for(Komponenta k : tempKompList){
+			ArrayList<Uredjaj>tempUredjaji =  prodavnica.getUredjaji();
+			for(Uredjaj u : tempUredjaji){
+				if(u.getKomponente().contains(k)){
+					if(!retVal.contains(u)){
+						retVal.add(u);
+					}
 				}
 			}
 		}
-		return autori;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
 	}
+	return retVal;
+}
+private getIzvestajOdDo(Object datumOd,Object datumDo){
+	
 }
 
-@SuppressWarnings("unchecked")
-private Object listTehnikeAutori(Object data) {
-	try {
-		String dat = (String) data;
-		Collection<Autor> autori = new ArrayList<Autor>();
-		Collection<UmetnickoDelo> dela = (Collection<UmetnickoDelo>) listTehnikeDela(dat);
-		for (Autor aut : galerija.getAutori()) {
-			for (UmetnickoDelo ud : dela) {
-				if (aut.getId() == ud.getIdAutora()) {
-					autori.add(aut);
-					break;
-				}
-			}
-		}
-		return autori;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
-	}
-}
 
-private Object searchAutori(Object data) {
-	try {
-		String dat = ((String)data).toLowerCase();
-		Collection<Autor> ret = new ArrayList<Autor>();
-		Collection<Autor> autori = galerija.getAutori();
-
-		for (Autor aut : autori) {
-			StringTokenizer st = new StringTokenizer(dat, " ");
-			while (st.hasMoreTokens()) {
-				String token = st.nextToken();
-				if (token.equals(String.valueOf(aut.getId()))
-						|| aut.getIme().toLowerCase().contains(token)
-						|| aut.getPrezime().toLowerCase().contains(token)) {
-					ret.add(aut);
-					break;
-				}
-			}
-		}
-		return ret;
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
-	}
-
-}
-
-private Object searchDela(Object data) {
-	try {
-		String dat = ((String)data).toLowerCase();
-		Collection<UmetnickoDelo> ret = new ArrayList<UmetnickoDelo>();
-		Collection<UmetnickoDelo> dela = galerija.getDela();
-
-		for (UmetnickoDelo ud : dela) {
-			StringTokenizer st = new StringTokenizer(dat, " ");
-			while (st.hasMoreTokens()) {
-				String token = st.nextToken();
-				Autor aut = galerija.pronadjiAutora(ud.getIdAutora());
-				if (token.equals(String.valueOf(ud.getId()))
-						|| ud.getNaslov().toLowerCase().contains(token)
-						|| aut.getPrezime().toLowerCase().contains(token)
-						|| aut.getIme().toLowerCase().contains(token)) {
-					ret.add(ud);
-					break;
-				}
-			}
-		}
-		return ret;
-
-	} catch (Exception e) {
-		e.printStackTrace();
-		return null;
-	}
-}
 }
 

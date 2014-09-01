@@ -51,6 +51,21 @@ public class ProdavnicaRacunara implements Serializable{
 		loadUredjaji(uredjajiDat);
 		loadRacuni(racuniDat);
 	}
+	public ArrayList<Komponenta> getKomponente() {
+		return komponente;
+	}
+	public ArrayList<Uredjaj> getUredjaji() {
+		return uredjaji;
+	}
+	public ArrayList<Kategorija> getKategorije() {
+		return kategorije;
+	}
+	public ArrayList<Racun> getRacuni() {
+		return racuni;
+	}
+	public ArrayList<Korisnik> getKorisnici() {
+		return korisnici;
+	}
 	protected void saveRacuni(String dat) {
 		File file = new File(dat);
 		ObjectOutputStream out = null;
