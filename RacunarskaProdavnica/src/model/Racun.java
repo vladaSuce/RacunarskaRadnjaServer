@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Racun implements Serializable{
@@ -15,10 +16,10 @@ public class Racun implements Serializable{
 	protected double porez;
 	protected double ukupna_cena;
 	protected String kupac;
-	protected String date_time;
+	protected Date date_time;
 	public Racun(HashMap<Komponenta, Integer> komponente,
 			HashMap<Uredjaj, Integer> uredjaji, double porez,
-			double ukupna_cena, String kupac, String date_time) {
+			double ukupna_cena, String kupac, Date date_time) {
 		super();
 		this.komponente = komponente;
 		this.uredjaji = uredjaji;
@@ -57,10 +58,10 @@ public class Racun implements Serializable{
 	public void setKupac(String kupac) {
 		this.kupac = kupac;
 	}
-	public String getDate_time() {
+	public Date getDate() {
 		return date_time;
 	}
-	public void setDate_time(String date_time) {
+	public void setDate(Date date_time) {
 		this.date_time = date_time;
 	}
 	

@@ -8,11 +8,17 @@ public class Poruka implements Serializable {
 
 	private String komanda;
 	private Object podatak;
-
+	private Object dodatniPodatak;
 	public Poruka(String komanda, Object podatak) {
 		super();
 		this.komanda = komanda;
 		this.podatak = podatak;
+	}
+	public Poruka(String komanda,Object podatak,Object dodatniPodatak){
+		super();
+		this.komanda=komanda;
+		this.podatak = podatak;
+		this.dodatniPodatak = dodatniPodatak;
 	}
 
 	@Override
@@ -35,6 +41,14 @@ public class Poruka implements Serializable {
 
 	public void setPodatak(Object podatak) {
 		this.podatak = podatak;
+	}
+
+	public Object getDodatniPodatak() {
+		return dodatniPodatak;
+	}
+
+	public void setDodatniPodatak(Object dodatniPodatak) {
+		this.dodatniPodatak = dodatniPodatak;
 	}
 
 }
